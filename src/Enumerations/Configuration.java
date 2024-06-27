@@ -8,8 +8,8 @@ public enum Configuration {
     public final int tankDimensionsZ = 27;
     public final int boxWidth = 3;
     public final int boxHeight = 3;
-    public final int trackBoxInitialAmount = 999;
-    public final int trackBottleInitialAmount = 27;
+    public final int trackBoxInitialAmount = 864;
+    public final int trackBottleInitialAmount = 0;
     public final int maxForkliftDriveSpeed = 22;
     public final int maxForkliftForkHeight = 10;
     // Pallet Stack
