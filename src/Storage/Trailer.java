@@ -1,46 +1,40 @@
 package Storage;
 
+import Utilities.Stack;
 import Enumerations.Configuration;
 
 public class Trailer {
-    private final Stack<Pallet[][]> pallets;
+    private final Stack<Pallet>[][] trailer;
+    private int width = Configuration.INSTANCE.trailerStackWidth;
+    private int height = Configuration.INSTANCE.trailerStackHeight;
+    private int depth = Configuration.INSTANCE.trailerStackDepth;
+    private int currentWidth = 0;
+    private int currentDepth = 0;
+
+    private int test = 0;
+
     public Trailer() {
-        pallets = new Stack<>();
+        trailer = new Stack[width][depth];
+        for (int x = 0; x < width; x++) {
+            for (int z = 0; z < depth; z++) {
+                trailer[x][z] = new Stack<>(height);
+            }
+        }
     }
-    public boolean isFull() {
-        return pallets.size() >= Configuration.INSTANCE.trailerStackHeight;
-    }
+
     public void push(Pallet pallet) {
-        if (getNextSlot() == null) {
-            // Stack is empty, might be because full
-            if (pallets.size() >= Configuration.INSTANCE.trailerStackHeight) {
-                throw new RuntimeException("Stack is already full!");
-            }
-            // Or because the Stack wasn't initialized
-            else {
-                Pallet[][] newStack = new Pallet[Configuration.INSTANCE.trailerStackWidth][Configuration.INSTANCE.trailerStackDepth];
-                newStack[0][0] = pallet;
-                pallets.push(newStack);
-            }
-        } else {
-            final int[] pos = getNextSlot();
-            Pallet[][] newStack = pallets.getStack();
-            newStack[pos[0]][pos[1]] = pallet;
-            pallets.push(newStack);
+        trailer[currentWidth][currentDepth].push(pallet);
+        currentDepth++;
+        if (currentDepth >= depth && test == 0) {
+            currentDepth = 0;
+            test++;
+        } else if (currentDepth >= depth && test == 1) {
+            currentDepth = 0;
+            currentWidth++;
+            test++;
+        } else if (currentDepth >= depth && test == 2) {
+            currentDepth = 0;
+            test++;
         }
-    }
-    private int[] getNextSlot() {
-        if (pallets.isEmpty()) {
-            return null;
-        }
-        final Pallet[][] stack = pallets.getStack();
-        for (int x = 0; x < Configuration.INSTANCE.trailerStackWidth; ++x) {
-            for (int y = 0; y < Configuration.INSTANCE.trailerStackDepth; ++y) {
-                if (stack[x][y] == null) {
-                    return new int[]{x, y};
-                }
-            }
-        }
-        return null;
     }
 }

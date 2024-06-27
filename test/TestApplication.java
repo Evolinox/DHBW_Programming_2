@@ -98,7 +98,7 @@ public class TestApplication {
         // Fill Bottles
         for (Map.Entry<String, String> entry : storeMap.entrySet()) {
             Tastes taste = Tastes.valueOf(entry.getValue().replaceAll(" ", "_").toUpperCase());
-            for (int i=0; i<27*9;i++) {
+            for (int i=0; i<27*9-1;i++) {
                 fm.fillBottle(taste);
             }
         }
