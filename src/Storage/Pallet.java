@@ -16,7 +16,7 @@ public class Pallet {
     public void push(Box box) {
         if (getNextSlot() == null) {
             // Stack is empty, might be because full
-            if (boxes.size() >= Configuration.INSTANCE.palletStackHeight) {
+            if (isFull()) {
                 throw new RuntimeException("Stack is already full!");
             }
             // Or because the Stack wasn't initialized
@@ -29,12 +29,14 @@ public class Pallet {
             final int[] pos = getNextSlot();
             Box[][] newStack = boxes.getStack();
             newStack[pos[0]][pos[1]] = box;
-            boxes.push(newStack);
         }
     }
 
     public boolean isFull() {
-        return boxes.size() >= Configuration.INSTANCE.palletStackHeight;
+        if(boxes.size() < 3) {
+            return false;
+        }
+        return getNextSlot() == null;
     }
 
     private int[] getNextSlot() {
