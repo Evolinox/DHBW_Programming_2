@@ -11,7 +11,7 @@ public class Trailer {
     private int currentWidth = 0;
     private int currentDepth = 0;
 
-    private int test = 0;
+    private int lauf = 0;
 
     public Trailer() {
         trailer = new Stack[width][depth];
@@ -25,16 +25,16 @@ public class Trailer {
     public void push(Pallet pallet) {
         trailer[currentWidth][currentDepth].push(pallet);
         currentDepth++;
-        if (currentDepth >= depth && test == 0) {
+        if (currentDepth >= depth && lauf == 0) {
             currentDepth = 0;
-            test++;
-        } else if (currentDepth >= depth && test == 1) {
+            lauf++;
+        } else if (currentDepth >= depth && lauf == 1) {
             currentDepth = 0;
             currentWidth++;
-            test++;
-        } else if (currentDepth >= depth && test == 2) {
+            lauf++;
+        } else if (currentDepth >= depth && lauf == 2) {
             currentDepth = 0;
-            test++;
+            lauf++;
         }
     }
 }

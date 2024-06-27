@@ -14,11 +14,10 @@ public class Track {
         // Init the Queues
         bottleQueue = new LinkedList<>();
         boxQueue = new LinkedList<>();
-        /* Insert the Queues
+        /* Insert the Queues */
         for (int i = 0; i < Configuration.INSTANCE.trackBottleInitialAmount; i++) {
             bottleQueue.add(new Bottle());
         }
-        */
         for (int i = 0; i < Configuration.INSTANCE.trackBoxInitialAmount; i++) {
             boxQueue.add(new Box());
         }
