@@ -8,9 +8,11 @@ public class AIEngine {
     public AIEngine() {
         gpuModel = GPUModel.EFFICIENCY;
     }
+
     public AIEngine(GPUModel gpuModel) {
         this.gpuModel = gpuModel;
     }
+
     public void switchGpuModel() {
         if (gpuModel == GPUModel.EFFICIENCY) {
             gpuModel = GPUModel.PERFORMANCE;
@@ -18,6 +20,7 @@ public class AIEngine {
             gpuModel = GPUModel.EFFICIENCY;
         }
     }
+
     public GPUModel getGpuModel() {
         return gpuModel;
     }

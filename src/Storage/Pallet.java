@@ -9,17 +9,17 @@ public class Pallet {
     private final Label label;
     private int numberOfBoxes = 0;
 
+    public Pallet(String store) {
+        boxes = new Stack<>();
+        label = new Label(Locator.PALLET, store);
+    }
+
     public Label getLabel() {
         return label;
     }
 
     public int getNumBoxes() {
         return numberOfBoxes;
-    }
-
-    public Pallet(String store) {
-        boxes = new Stack<>();
-        label = new Label(Locator.PALLET, store);
     }
 
     public void push(Box box) {
@@ -44,7 +44,7 @@ public class Pallet {
     }
 
     public boolean isFull() {
-        if(boxes.size() < 3) {
+        if (boxes.size() < 3) {
             return false;
         }
         return getNextSlot() == null;

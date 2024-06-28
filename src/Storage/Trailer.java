@@ -1,8 +1,5 @@
 package Storage;
 
-import Enumerations.Configuration;
-import Utilities.Stack;
-
 public class Trailer {
     private final TrailerLayer trailerLayer;
     private int currentLayer = 1;
