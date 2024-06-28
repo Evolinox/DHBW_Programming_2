@@ -34,6 +34,7 @@ public class Trailer {
                 }
             }
             if (layerFull) {
+                trailerLayer.getPalletLayer2()[0][0] = pallet;
                 currentLayer = 2;
             }
         } else if (currentLayer == 2) {
@@ -47,8 +48,6 @@ public class Trailer {
                         done = true;
                         layerFull = false;
                         break;
-                    } else {
-                        layerFull = false;
                     }
                 }
                 if (done) {

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class Label {
     private final UUID uuid = UUID.randomUUID();
-    private final String labelText;
+    private String labelText;
 
     public Label(Locator type, int bottleCount) {
         if (type != Locator.BOX) {
@@ -41,6 +41,14 @@ public class Label {
             default:
                 labelText = "Printing not successful :(";
                 break;
+        }
+    }
+
+    public void updateBottleCount(Locator type, int bottleCount) {
+        if (type != Locator.BOX) {
+            throw new IllegalArgumentException("Diese Methode steht nur dem Typ BOX zur verfügung!");
+        } else {
+            labelText = uuid + " | Product | " + bottleCount;
         }
     }
 

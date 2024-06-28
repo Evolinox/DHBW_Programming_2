@@ -12,12 +12,21 @@ public class Box {
 
     public Box() {
         storageArea = new Bottle[boxCapacity];
-        label = new Label(Locator.BOX, 9);
+        label = new Label(Locator.BOX, storageArea.length);
         nextIndex = 0;
     }
 
     public void addBottle(Bottle bottle) {
         storageArea[nextIndex++] = bottle;
+        label.updateBottleCount(Locator.BOX, storageArea.length);
+    }
+
+    public int getBottlesCount() {
+        return storageArea.length;
+    }
+
+    public Bottle[] getBottleArray() {
+        return storageArea;
     }
 
     public boolean isFull() {

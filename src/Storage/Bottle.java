@@ -20,6 +20,7 @@ public class Bottle {
     private char[] content;
     private int weight;
     private boolean isFilled = false;
+    private Tastes taste;
 
     // Default Constructor
     // add Spezification
@@ -40,6 +41,7 @@ public class Bottle {
         // Label
         frontLabel = new Label(Locator.FRONT, Tastes.LONDON_DRY_GIN, serialNumber);
         backLabel = new Label(Locator.BACK, Tastes.LONDON_DRY_GIN, serialNumber);
+        taste = Tastes.LONDON_DRY_GIN;
     }
 
     public Bottle(Tastes taste) {
@@ -59,6 +61,8 @@ public class Bottle {
         // Label
         frontLabel = new Label(Locator.FRONT, taste, serialNumber);
         backLabel = new Label(Locator.BACK, taste, serialNumber);
+        // Taste
+        this.taste = taste;
     }
 
     // Constructor
@@ -129,6 +133,14 @@ public class Bottle {
             }
         }
         return state;
+    }
+
+    public Tastes getTaste() {
+        return taste;
+    }
+
+    public String getLabelText() {
+        return frontLabel.toString();
     }
 
     // Check Identity of Bottles
