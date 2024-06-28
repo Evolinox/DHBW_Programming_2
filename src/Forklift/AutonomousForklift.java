@@ -9,10 +9,19 @@ import Storage.Trailer;
 public class AutonomousForklift implements IAutonomousForklift {
     private final Trailer trailer;
     private final Chassis chassis;
+    private final AIEngine aiEngine2048;
+    private final AIEngine aiEngine4096;
     private Pallet currentPallet;
     private boolean isStarted = false;
     private int speed = 0;
     private int forkHeight = 0;
+
+    public AutonomousForklift(Trailer trailer) {
+        this.trailer = trailer;
+        this.chassis = new Chassis();
+        this.aiEngine2048 = new AIEngine(2048);
+        this.aiEngine4096 = new AIEngine(4096);
+    }
 
     public void setStarted(boolean state) {
         isStarted = state;
@@ -20,11 +29,6 @@ public class AutonomousForklift implements IAutonomousForklift {
 
     public boolean getState() {
         return isStarted;
-    }
-
-    public AutonomousForklift(Trailer trailer) {
-        this.trailer = trailer;
-        this.chassis = new Chassis();
     }
 
     public int getSpeed() {

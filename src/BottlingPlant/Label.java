@@ -9,6 +9,7 @@ import java.util.UUID;
 public class Label {
     private final UUID uuid = UUID.randomUUID();
     private final String labelText;
+
     public Label(Locator type, int bottleCount) {
         if (type != Locator.BOX) {
             throw new IllegalArgumentException("Dieser Konstruktor ist nur für den Typ BOX!");
@@ -16,6 +17,7 @@ public class Label {
             labelText = uuid + " | Product | " + bottleCount;
         }
     }
+
     public Label(Locator type, String store) {
         if (type != Locator.PALLET) {
             throw new IllegalArgumentException("Dieser Konstruktor ist nur für den Typ PALLET!");
@@ -23,6 +25,7 @@ public class Label {
             labelText = store;
         }
     }
+
     public Label(Locator type, Tastes taste, int serial) {
         Clock clock = Clock.systemDefaultZone();
 

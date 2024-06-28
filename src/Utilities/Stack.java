@@ -1,36 +1,18 @@
 package Utilities;
 
-import java.util.Arrays;
+import Storage.Box;
 
-public class Stack<E> {
-    private int size = 0;
-    private Object[] elements;
+import java.util.ArrayList;
 
-    public Stack(int capacity) {
-        elements = new Object[capacity];
-    }
-
-    public void push(E e) {
-        if (size == elements.length) {
-            reserveMemory();
-        }
-
-        elements[size++] = e;
-    }
-
-    @SuppressWarnings("unchecked")
+public class Stack<E> extends ArrayList<E> {
     public E pop() {
-        E e = (E) elements[--size];
-        elements[size] = null;
+        E e = (E) get(size() - 1);
+        remove(size() - 1);
         return e;
     }
 
-    private void reserveMemory() {
-        int size = elements.length * 2;
-        elements = Arrays.copyOf(elements, size);
-    }
-
-    public int getSize() {
-        return size;
+    // add/push Box
+    public void push(E e) {
+        add(e);
     }
 }

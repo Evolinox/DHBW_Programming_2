@@ -8,18 +8,18 @@ import Enumerations.Tastes;
 
 public class Bottle {
 
-    // inicialise Variables
-    private String name;
-    private char[] content;
     private final MouthPiece mouthPiece;
     private final double height;
     private final int diameter;
     private final int marginalCapacity;
-    private final int weight;
-    private boolean isFilled = false;
     private final int serialNumber = Configuration.INSTANCE.generateNextSerialNumber();
     private final Label frontLabel;
     private final Label backLabel;
+    // inicialise Variables
+    private String name;
+    private char[] content;
+    private int weight;
+    private boolean isFilled = false;
 
     // Default Constructor
     // add Spezification
@@ -32,8 +32,8 @@ public class Bottle {
         weight = 400;
         // Content
         this.content = new char[marginalCapacity];
-        for (int i=0; i < 500; i++) {
-            content[i] = (char)103;
+        for (int i = 0; i < 500; i++) {
+            content[i] = (char) 103;
         }
         // Special Values
         isFilled = determineFilledStatus(content);
@@ -51,8 +51,8 @@ public class Bottle {
         weight = 400;
         // Content
         this.content = new char[marginalCapacity];
-        for (int i=0; i < 500; i++) {
-            content[i] = (char)103;
+        for (int i = 0; i < 500; i++) {
+            content[i] = (char) 103;
         }
         // Special Values
         isFilled = determineFilledStatus(content);
@@ -90,12 +90,16 @@ public class Bottle {
         int index = 0;
         if (!isFilled) {
             for (int i = 0; i < marginalCapacity; i++) {
-                if (this.content[i] != (char)103) {
+                if (this.content[i] != (char) 103) {
                     index = i;
                     break;
                 }
             }
-            this.content[index] = (char)103;
+            this.content[index] = (char) 103;
+            this.weight++;
+            if (index == marginalCapacity - 1) {
+                isFilled = true;
+            }
         } else {
             throw new RuntimeException("Bottle is already full!");
         }
@@ -107,7 +111,7 @@ public class Bottle {
             return 0;
         } else {
             for (int i = 0; i < marginalCapacity; i++) {
-                if (this.content[i] != (char)103) {
+                if (this.content[i] != (char) 103) {
                     space++;
                 }
             }
@@ -130,15 +134,15 @@ public class Bottle {
     // Check Identity of Bottles
     public boolean equals(Object obj) {
         // Check for Null-Reference
-        if(obj == null) {
+        if (obj == null) {
             return false;
         }
         // Check for Reference to yourself
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
         // Check for Same SerialNumber (Part of Instance)
-        if(obj instanceof Bottle) {
+        if (obj instanceof Bottle) {
             return this.serialNumber == ((Bottle) obj).serialNumber;
         }
         return false;

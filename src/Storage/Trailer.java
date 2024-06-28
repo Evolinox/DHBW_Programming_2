@@ -1,40 +1,63 @@
 package Storage;
 
-import Utilities.Stack;
 import Enumerations.Configuration;
+import Utilities.Stack;
 
 public class Trailer {
-    private final Stack<Pallet>[][] trailer;
-    private int width = Configuration.INSTANCE.trailerStackWidth;
-    private int height = Configuration.INSTANCE.trailerStackHeight;
-    private int depth = Configuration.INSTANCE.trailerStackDepth;
-    private int currentWidth = 0;
-    private int currentDepth = 0;
-
-    private int lauf = 0;
+    private final TrailerLayer trailerLayer;
+    private int currentLayer = 1;
 
     public Trailer() {
-        trailer = new Stack[width][depth];
-        for (int x = 0; x < width; x++) {
-            for (int z = 0; z < depth; z++) {
-                trailer[x][z] = new Stack<>(height);
-            }
-        }
+        trailerLayer = new TrailerLayer();
+    }
+
+    public TrailerLayer getTrailerLayer() {
+        return trailerLayer;
     }
 
     public void push(Pallet pallet) {
-        trailer[currentWidth][currentDepth].push(pallet);
-        currentDepth++;
-        if (currentDepth >= depth && lauf == 0) {
-            currentDepth = 0;
-            lauf++;
-        } else if (currentDepth >= depth && lauf == 1) {
-            currentDepth = 0;
-            currentWidth++;
-            lauf++;
-        } else if (currentDepth >= depth && lauf == 2) {
-            currentDepth = 0;
-            lauf++;
+        if (currentLayer == 1) {
+            boolean layerFull = true;
+            boolean done = false;
+
+            for (int x = 0; x < trailerLayer.getPalletLayer1().length; x++) {
+                for (int y = 0; y < trailerLayer.getPalletLayer1()[x].length; y++) {
+                    if (trailerLayer.getPalletLayer1()[x][y] == null) {
+                        trailerLayer.getPalletLayer1()[x][y] = pallet;
+                        done = true;
+                        layerFull = false;
+                        break;
+                    }
+                }
+                if (done) {
+                    break;
+                }
+            }
+            if (layerFull) {
+                currentLayer = 2;
+            }
+        } else if (currentLayer == 2) {
+            boolean layerFull = true;
+            boolean done = false;
+
+            for (int x = 0; x < trailerLayer.getPalletLayer2().length; x++) {
+                for (int y = 0; y < trailerLayer.getPalletLayer2()[x].length; y++) {
+                    if (trailerLayer.getPalletLayer2()[x][y] == null) {
+                        trailerLayer.getPalletLayer2()[x][y] = pallet;
+                        done = true;
+                        layerFull = false;
+                        break;
+                    } else {
+                        layerFull = false;
+                    }
+                }
+                if (done) {
+                    break;
+                }
+            }
+            if (layerFull) {
+                throw new RuntimeException("Trailer ist voll!");
+            }
         }
     }
 }

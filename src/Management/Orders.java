@@ -1,14 +1,16 @@
 package Management;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.TreeMap;
 
 public class Orders {
     private static final InputStream csvFile = Orders.class.getResourceAsStream("/orders.csv");
-    private static String line;
     private static final String csvDelimit = ",";
-
+    private static String line;
     // Custom Comparator
     private static Comparator<String> storeComparator = new Comparator<String>() {
         @Override

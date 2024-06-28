@@ -8,6 +8,10 @@ public class Pallet {
     private final Stack<Box[][]> boxes;
     private final Label label;
 
+    public Label getLabel() {
+        return label;
+    }
+
     public Pallet(String store) {
         boxes = new Stack<>();
         label = new Label(Locator.PALLET, store);

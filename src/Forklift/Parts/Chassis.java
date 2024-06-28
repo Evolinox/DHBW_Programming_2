@@ -4,6 +4,7 @@ public class Chassis {
     private final Wheel[] wheels;
     private final Fork[] forks;
     private final Mast mast;
+
     public Chassis() {
         // Wheels
         wheels = new Wheel[2];

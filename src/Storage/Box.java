@@ -6,8 +6,8 @@ import Enumerations.Locator;
 
 public class Box {
     private final int boxCapacity = Configuration.INSTANCE.boxWidth * Configuration.INSTANCE.boxHeight;
-    private Bottle[] storageArea;
     private final Label label;
+    private Bottle[] storageArea;
     private int nextIndex;
 
     public Box() {

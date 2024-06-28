@@ -2,10 +2,9 @@ package Enumerations;
 
 public enum Configuration {
     INSTANCE;
-    private int lastSerialNumber = 0;
-    public final int tankDimensionsX = 20;
-    public final int tankDimensionsY = 25;
-    public final int tankDimensionsZ = 27;
+    public final int tankDimensionsX = 50;
+    public final int tankDimensionsY = 50;
+    public final int tankDimensionsZ = 50;
     public final int boxWidth = 3;
     public final int boxHeight = 3;
     public final int trackBoxInitialAmount = 864;
@@ -16,11 +15,12 @@ public enum Configuration {
     public final int palletStackWidth = 3;
     public final int palletStackHeight = 3;
     public final int palletStackDepth = 3;
-
     // Trailer Stack
     public final int trailerStackWidth = 2;
     public final int trailerStackHeight = 2;
     public final int trailerStackDepth = 8;
+    private int lastSerialNumber = 0;
+
     public int generateNextSerialNumber() {
         lastSerialNumber++;
         return lastSerialNumber;

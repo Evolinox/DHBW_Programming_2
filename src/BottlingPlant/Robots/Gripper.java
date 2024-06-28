@@ -9,6 +9,7 @@ public class Gripper extends Robot {
     private Pallet pallet;
     private PalletQueue palletQueue;
     private AutonomousForklift autonomousForklift;
+
     public Gripper(AutonomousForklift autonomousForklift, PalletQueue palletQueue) {
         super();
         this.palletQueue = palletQueue;

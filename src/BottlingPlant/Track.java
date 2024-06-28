@@ -10,6 +10,7 @@ import java.util.Queue;
 public class Track {
     private final Queue<Bottle> bottleQueue;
     private final Queue<Box> boxQueue;
+
     public Track() {
         // Init the Queues
         bottleQueue = new LinkedList<>();
@@ -22,12 +23,15 @@ public class Track {
             boxQueue.add(new Box());
         }
     }
+
     public void addBottle(Bottle bottle) {
         bottleQueue.add(bottle);
     }
+
     public Bottle getNextBottle() {
         return bottleQueue.poll();
     }
+
     public Box getNextBox() {
         return boxQueue.poll();
     }
